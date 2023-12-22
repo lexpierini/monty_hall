@@ -1,11 +1,9 @@
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Gift from '@/components/Gift'
 
 export default function Home() {
   return (
     <>
-      
+      <Gift />
     </>
   )
 }
