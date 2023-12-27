@@ -1,10 +1,15 @@
-export default class Door {
-  #number
-  #haveGift
-  #chosed
-  #opened
+export default class DoorModel {
+  #number: number
+  #haveGift: boolean
+  #chosed: boolean
+  #opened: boolean
 
-  constructor(number, haveGift = false, chosed = false, opened = false) {
+  constructor(
+    number: number,
+    haveGift = false,
+    chosed = false,
+    opened = false,
+  ) {
     this.#number = number
     this.#haveGift = haveGift
     this.#chosed = chosed
@@ -29,16 +34,16 @@ export default class Door {
 
   unChosen() {
     const chosed = false
-    return new Door(this.number, this.haveGift, chosed, this.opened)
+    return new DoorModel(this.number, this.haveGift, chosed, this.opened)
   }
 
   changeChoice() {
     const chosed = !this.chosed
-    return new Door(this.number, this.haveGift, chosed, this.opened)
+    return new DoorModel(this.number, this.haveGift, chosed, this.opened)
   }
 
   open() {
     const opened = true
-    return new Door(this.number, this.haveGift, this.chosed, opened)
+    return new DoorModel(this.number, this.haveGift, this.chosed, opened)
   }
 }
