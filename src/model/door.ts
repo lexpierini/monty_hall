@@ -1,17 +1,12 @@
 export default class DoorModel {
   #number: number
-  #haveGift: boolean
+  #hasGift: boolean
   #chosed: boolean
   #opened: boolean
 
-  constructor(
-    number: number,
-    haveGift = false,
-    chosed = false,
-    opened = false,
-  ) {
+  constructor(number: number, hasGift = false, chosed = false, opened = false) {
     this.#number = number
-    this.#haveGift = haveGift
+    this.#hasGift = hasGift
     this.#chosed = chosed
     this.#opened = opened
   }
@@ -20,8 +15,8 @@ export default class DoorModel {
     return this.#number
   }
 
-  get haveGift() {
-    return this.#haveGift
+  get hasGift() {
+    return this.#hasGift
   }
 
   get chosed() {
@@ -34,16 +29,16 @@ export default class DoorModel {
 
   unChosen() {
     const chosed = false
-    return new DoorModel(this.number, this.haveGift, chosed, this.opened)
+    return new DoorModel(this.number, this.hasGift, chosed, this.opened)
   }
 
   changeChoice() {
     const chosed = !this.chosed
-    return new DoorModel(this.number, this.haveGift, chosed, this.opened)
+    return new DoorModel(this.number, this.hasGift, chosed, this.opened)
   }
 
   open() {
     const opened = true
-    return new DoorModel(this.number, this.haveGift, this.chosed, opened)
+    return new DoorModel(this.number, this.hasGift, this.chosed, opened)
   }
 }
