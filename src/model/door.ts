@@ -27,6 +27,10 @@ export default class DoorModel {
     return this.#opened
   }
 
+  get closed() {
+    return !this.#opened
+  }
+
   unChosen() {
     const chosed = false
     return new DoorModel(this.number, this.hasGift, chosed, this.opened)
