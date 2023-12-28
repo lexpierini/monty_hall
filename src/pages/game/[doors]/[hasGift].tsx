@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import styles from '../styles/Game.module.css'
-import Door from '../components/Door'
-import { addDoors, updateDoors } from '../functions/doors'
+import { useRouter } from 'next/router'
+import styles from '../../../styles/Game.module.css'
+import Door from '../../../components/Door'
+import { addDoors, updateDoors } from '../../../functions/doors'
 
 export default function Game() {
-  const [doors, setDoors] = useState(addDoors(3, 2))
+  const router = useRouter()
+  const [doors, setDoors] = useState([])
+
+  useEffect(() => {
+    const doors = +router.query.doors
+    const hasGift = +router.query.hasGift
+    setDoors(addDoors(doors, hasGift))
+  }, [router?.query])
 
   const renderDoors = () =>
     doors.map((door) => (
