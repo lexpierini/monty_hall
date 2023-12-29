@@ -3,7 +3,7 @@ import DoorModel from '../model/door'
 import styles from '../styles/Door.module.css'
 import Gift from './Gift'
 
-interface DoorProps {
+type DoorProps = {
   value: DoorModel
   onChange: (newDoor: DoorModel) => void
 }

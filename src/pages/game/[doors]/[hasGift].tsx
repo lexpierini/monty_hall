@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../../../styles/Game.module.css'
@@ -9,10 +9,21 @@ export default function Game() {
   const router = useRouter()
   const [doors, setDoors] = useState([])
 
-  useEffect(() => {
-    const doors = +router.query.doors
+  const isValid = useMemo(() => {
+    const doorsQty = +router.query.doors
     const hasGift = +router.query.hasGift
-    setDoors(addDoors(doors, hasGift))
+
+    const isValidQtyDoors = doorsQty >= 3 && doorsQty <= 10
+    const isValidDoorGift = hasGift >= 1 && hasGift <= doorsQty
+
+    if (isValidQtyDoors && isValidDoorGift) return true
+    else return false
+  }, [router?.query])
+
+  useEffect(() => {
+    const doorsQty = +router.query.doors
+    const hasGift = +router.query.hasGift
+    setDoors(addDoors(doorsQty, hasGift))
   }, [router?.query])
 
   const renderDoors = () =>
@@ -26,7 +37,7 @@ export default function Game() {
 
   return (
     <div id={styles.game}>
-      <div className={styles.doors}>{renderDoors()}</div>
+      <div className={styles.doors}>{isValid ? renderDoors() : <h1>Invalid values</h1>}</div>
       <div className={styles.buttons}>
         <Link href="/">
           <button>Restart</button>
