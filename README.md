@@ -7,7 +7,7 @@ Study project with Next.js
 - React.js
 - Typescript
 
-## User interface
+## Images
 
 ![Home](/public/assets/imgs/home.png)
 
